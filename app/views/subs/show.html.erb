@@ -1,0 +1,17 @@
+<h1><%= @sub.title %></h1>
+
+<hr>
+
+<%= @sub.description %>
+
+<br>
+<br>
+
+<% if current_user.id == @sub.moderator_id %>
+  <%= button_to "Edit", edit_sub_url(@sub), method: "get" %>
+<% end %>
+
+<%= button_to "Add Sub", new_sub_url, method: "get" %>
+
+<%= button_to "Add Post", new_sub_post_url(@sub), method: "get" %>
+<hr>

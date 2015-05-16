@@ -1,0 +1,39 @@
+<h1>Create a new Post</h1>
+
+<%= render 'layouts/errors' %>
+
+<form action="<%= posts_url %>" method="post">
+
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="post[author_id]"
+         value="<%= current_user.id %>">
+
+  <label for="post-sub_ids">Subs</label><br>
+  <% Sub.all.each do |s| %>
+    <input type="checkbox" name="post[sub_ids][]"
+           id="post-sub_ids"
+           value="<%=s.id%>">
+      <%= s.title %><br>
+  <% end %><br>
+  <br>
+  <label for="post-title">Title</label>
+
+  <br>
+
+    <input type="text" name="post[title]" id="post-title"
+           value="<% @post.title %>">
+  <br>
+
+  <label for="post-content">Content</label>
+
+  <br>
+
+    <textarea name="post[content]" placeholder="Enter some content"
+              id="post-content"></textarea>
+  <br>
+
+  <input type="submit">
+
+</form>
